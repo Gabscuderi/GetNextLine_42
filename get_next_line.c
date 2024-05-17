@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/17 10:47:05 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:06:23 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //when it reads 0 or less bytes, it should stop
 
 //base_buffer e cup_buffer.
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,10 +28,10 @@ char	*cup_buffer;
 static int	count = 1;
 
 printf("ft_calloc#[%d]---", count++);
-cup_buffer = malloc((3 + 1) * sizeof(char));
+cup_buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 if (!cup_buffer)
 	return (NULL);
-bytes_read = read(fd,cup_buffer, 3);
+bytes_read = read(fd,cup_buffer, BUFFER_SIZE);
 if (bytes_read <= 0)
 	return (NULL);
 return (cup_buffer);

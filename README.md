@@ -70,10 +70,29 @@ return (base_buffer);
 
 - we leave 3 char read when we call the ft because the subject asks us to read as little as possible: we have to return the hole  line when find a \n so it's not helpful to read smt like 100 char all in once.
 
+so: 
+### focus on Buffer size
 
-### before finishing the project: Buffer size
+( subject says to read as little as possible; 
+and to check if code works with a buff size of 1, 9999, 100000000. )
 
-""chapter 3
+we should also mantion that the buff size can be tested in the peer evaluation, while compiling: ***gcc -D BUFFER_SIZE=numero main.c g_n_l.c***;
+and if not define there we should give it a number of default,
+to do that:
+
+#ifndef
+#define BUFFER_SIZE=3
+#end
+
+in getnextline.h because it is a macro.
+
+
+!!! vedere se aggiungere ft_helper per verifica qui nel readme
+
+### chapter 4: a better understanding of the gnl project.
+
+
+
 
 
 
