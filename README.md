@@ -5,11 +5,11 @@
 ### first steps
 
 **get_next_line(int fd)**
-
+```
 bytes_read = read(fd, cup_buffer, 3);
 
 return (cup_buffer);
-
+```
 **main**
 
 fd = open("testo_prova.txt", O_RDONLY);
