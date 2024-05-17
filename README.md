@@ -43,7 +43,6 @@ but first:
 **valgrind --leak-check=full ./a.out**
 
 after you call get_next_line and printf it.  In the while loop:
-
 **free(line)**
 
 
@@ -63,13 +62,18 @@ when bytes_read <= 0 before to return null we must free the buffer created with 
 ### now let's spleet get_next_line.c
 
 1. ft wich reads from fileadn append in a buffer with read
-
 2. ft wich helps us get the next line.
-
 - the 2 will called the first passing fd.
 
+base_buffer = ft_read_from_file(fd);
+return (base_buffer);
+
+- we leave 3 char read when we call the ft because the subject asks us to read as little as possible: we have to return the hole  line when find a \n so it's not helpful to read smt like 100 char all in once.
 
 
+### before finishing the project: Buffer size
+
+""chapter 3
 
 
 

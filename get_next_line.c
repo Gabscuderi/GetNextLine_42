@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/17 10:32:48 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:47:05 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-char *ft_get_next_line(int fd)
+char *ft_read_from_file(int fd)
 {
 int		bytes_read;
 char	*cup_buffer;
@@ -34,5 +34,13 @@ bytes_read = read(fd,cup_buffer, 3);
 if (bytes_read <= 0)
 	return (NULL);
 return (cup_buffer);
+}
+
+char	*ft_get_next_line(int fd)
+{
+	char *base_buffer;
+
+	base_buffer = ft_read_from_file(fd);
+	return (base_buffer);
 }
 
