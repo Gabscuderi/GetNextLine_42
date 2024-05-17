@@ -1,8 +1,75 @@
 # GetNextLine_42
 
-## Per each function the main thing it does 
+## procedure
+
+### first steps
 
 **get_next_line(int fd)**
+
 bytes_read = read(fd, cup_buffer, 3);
+
 return (cup_buffer);
+
+**main**
+
+fd = open("testo_prova.txt", O_RDONLY);
+
+**while (1)**
+
+{
+
+next_line = ft_get_next_line(fd);
+
+**if (next_line == NULL)**
+  **break ;**
+
+printf("[%d]:%s\n", count, next_line); //count is to show you 
+the line numbers
+
+}
+
+close(fd);
+
+### now.
+accumulating content until there is a new line
+
+printing it 
+
+and continuing until end of file.
+
+but first:
+
+- to check memory leaks:
+**valgrind --leak-check=full ./a.out**
+
+after you call get_next_line and printf it.  In the while loop:
+
+**free(line)**
+
+
+- let's add error if fd not found: so after opening the file
+
+if (fd == -1) //-1 beacuse 0 could be ok for some sort of file
+
+  printf("Error opening file");
+
+
+- malloc in get_next_line: 
+
+when bytes_read <= 0 before to return null we must free the buffer created with malloc, wich should correct the one leak standed out freeing already in the main.
+**use calloc if malloc doesn't work**
+
+
+### now let's spleet get_next_line.c
+
+1. ft wich reads from fileadn append in a buffer with read
+
+2. ft wich helps us get the next line.
+
+- the 2 will called the first passing fd.
+
+
+
+
+
 
