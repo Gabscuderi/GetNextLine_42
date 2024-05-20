@@ -4,6 +4,8 @@
 *20/05/2024*
 
 ## procedure
+*code is not always full, and could be incorrectly just to be faster it should be easy to read*
+
 
 ### first steps
 
@@ -100,7 +102,7 @@ in getnextline.h because it is a macro.
 
 ## Now we need to work on the ft*
 
-***get_next_line*** function should then allocate mem. for static base_buffer (if empty) reads calling ft_read_from_file, and then should call another function to look for newlines.
+***get_next_line***   function should then allocate mem. for static base_buffer (if empty) reads calling ft_read_from_file, and then should call another function to look for newlines.
 ```
 char *get_next_line(int fd)
 {
@@ -111,37 +113,56 @@ char *get_next_line(int fd)
   
   if (!ft_strchr(basin_buffer, '\n'))
    base_buffer = ft_read_from_file(base_buffer, fd);
-  //controls
+  //controls if end of file, free base and return null
 
-  one_line =ft_look_for_n(base_buffer);
+  one_line = ft_create_line(base_buffer);
+  basin_buffer = ft_manage_remaining(base_buffer)
   return (one_line);
 }
+
+char *ft_create_line(char *base_buffer) {
+  //copia base in str compreso il \n mettondo un \0, e non il resto
+  //ritorna come one_line nel get_next_line
+}
+
+char *ft_manage_remaining(char *base_buffer) {
+  //toglie dal buffer il pre \n e ci lascia cio che rimane, 
+  //ritorna come nuova base da riempire in get
+}
 ```
-***ft_read_from_file*** takes from a file, put in a mid buffer wich needs to be allocated first, and then calling ft_attach_buffer puts together base_buffer e mid buffer. 
+base_buffer si riempie, se non ci sono newline, allora richiama read_from_file e ci aggiunge roba, il main richiama get_next_line e cosi via, se nel base buffer ce il new line va avnti 
+
+***ft_read_from_file***   takes from a file, put in a mid buffer wich needs to be allocated first, and then calling ft_attach_buffer puts together base_buffer e mid buffer. 
 ("cup_buffer" -> "mid_buffer")
+
 ```
 ft_read_from_file(base_buffer, fd)
 {
+  //malloc on mid_buffer
+  //while bytes read > 0 and there aint't \n in base_buffer:
+  //read from fd
 
   mid_buffer[bytes_read] = '\0'; // it goes in the +1 of the allocation
 
-  base_buffer = ft_append_buffer(base_buffer, mid_buffer);
+  base_buffer = ft_attach_buffer(base_buffer, mid_buffer);
 
   if (ft_strchr(base_buffer, '\n'))
    break ;
    //here i look for then \n and then i stop if found
 }
 ```
-***ft_attach_buffer*** base_buffer shell return once we find \n in the mid buffer, if not we join mid and base.
+
+***ft_attach_buffer***   base_buffer shell return once we find \n in the mid buffer, if not we join mid and base.
 ```
-char *ft_attach_buffer(char *base_buffer, char *mid_buffer){
+char *ft_attach_buffer(char *base_buffer, char *mid_buffer)
 { 
   char *temp = ft_strjoin(base_buffer, mid_buffer);
   free(base_buffer);
   return (temp); //in base buffer of read_from_file.
 }
 ```
-## reread conclusion -> run code ->plan next adjustment
+
+## reread conclusion -> create ft_create_line and ft_manage_remaining -> adjust libft ft* -> run code -> peertopeer help -> find tester -> push -> restudy the project
 
 The append_buffer function takes two arguments: 
 char *basin_buffer and char *read_buffer. 
