@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/17 20:06:23 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:02:42 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,27 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
+void    print_newline_helper(char *buffer)
+{
+
+    while (*buffer &&  *buffer != '\0')
+    {
+        if (*buffer == '\n') 
+        {
+            *buffer= '\\';
+        }
+        printf("%c",*buffer);
+        buffer++;
+    }
+}
+
 char *ft_read_from_file(int fd)
 {
 int		bytes_read;
 char	*cup_buffer;
 static int	count = 1;
 
-printf("ft_calloc#[%d]---", count++);
+printf("malloc#[%d]---", count++);
 cup_buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 if (!cup_buffer)
 	return (NULL);
@@ -37,9 +51,9 @@ if (bytes_read <= 0)
 return (cup_buffer);
 }
 
-char	*ft_get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char *base_buffer;
+	static char *base_buffer;
 
 	base_buffer = ft_read_from_file(fd);
 	return (base_buffer);

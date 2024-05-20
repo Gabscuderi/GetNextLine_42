@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:30:12 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/17 20:06:29 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:27:54 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 char *ft_read_from_file(int fd);
 char *ft_get_next_line(int fd);
 int main(void);
+void    print_newline_helper(char *buffer);
 
 #endif
