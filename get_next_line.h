@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:30:12 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/21 00:33:10 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:09:51 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 char	*get_next_line(int fd);
 
 char    *ft_read_from_file(char *base_buffer, int fd);
-char    *ft_create_line(char *base_buffer);
-char    *ft_manage_remaining(char *base_buffer);
+char    *ft_create_line(char *base_buffer, int *ptr_counter);
+char    *ft_manage_remaining(char *base_buffer, int counter);
 char    *ft_attach_buffer(char *base_buffer, char *mid_buffer);
 
 void	*ft_calloc(size_t n_elem, size_t el_size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:42:23 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/20 21:44:30 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:56:25 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *) &s[i]);
 	return (NULL);
 }
+
+/*Crucially, the ft_strjoin 
+function ensures that sufficient memory is allocated for the new buffer, 
+considering both sets of data.*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

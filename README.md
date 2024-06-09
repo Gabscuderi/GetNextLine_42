@@ -162,36 +162,25 @@ char *ft_attach_buffer(char *base_buffer, char *mid_buffer)
 }
 ```
 
-## reread conclusion -> create ft_create_line and ft_manage_remaining -> adjust libft ft* -> run code -> peertopeer help -> find tester -> push -> restudy the project
+### how does ft_attach work and how not to waist mem.
+The ft_attach_buffer wich takes as arguments(char *basin_buffer, char *read_buffer),
+has the purpose of returning a combined char * di base e mid, wich comes back as new base in get next line.
+It needs to be rimimbered base e mid are two pointers so they don't rappresent the actual data.
 
-The append_buffer function takes two arguments: 
-char *basin_buffer and char *read_buffer. 
-
-The purpose of this function is to concatenate the contents of 
-read_buffer to the end of basin_buffer and return the updated combined 
-string. To achieve this without causing any memory issues, the function 
-handles memory allocation and pointer reassignment smartly.
-
-When the append_buffer function is called, it receives the memory address 
-of basin_buffer as its first argument and the memory address of read_buffer 
-as its second argument. Since these are pointers, they represent memory 
-addresses rather than the actual data.
-
-To perform the concatenation, the function needs to create a new buffer 
-that is large enough to hold the combined data. The function dynamically 
-allocates memory for the new basin_buffer using the ft_strjoin function, 
-which takes the old basin_buffer and the read_buffer as arguments, and 
-concatenates them together into a new buffer. Crucially, the ft_strjoin 
-function ensures that sufficient memory is allocated for the new buffer, 
-considering both sets of data.
+To concatenate base and mid buffer together memory space needs to be prepared considering both sets of data.
+ft_strjoin allocates memory for the new base, and it does the real job of putting them together.
 
 After the data is successfully combined in the new basin_buffer, the function 
 then reassigns the pointer basin_buffer to point to the new memory address 
-containing the merged data. This is the smart reassignment that allows the 
+containing the merged data. 
+
+This is the smart reassignment that allows the 
 function to update the original basin_buffer outside of the function.
 
 By reassigning basin_buffer, the function effectively updates the original 
-pointer outside the function's scope. Now, the original basin_buffer points 
+pointer outside the function's scope. 
+
+Now, the original basin_buffer points 
 to the newly created buffer that holds the merged data from both buffers 
 (basin_buffer and read_buffer).
 
@@ -203,5 +192,14 @@ will reflect the changes made within the function.
 In conclusion, the append_buffer function demonstrates the concept of 
 passing pointers to modify the original pointer's value, allowing for 
 efficient data concatenation without causing memory leaks or loss of data. 
+
 This smart memory management and pointer reassignment make the function 
 reliable and safe when dealing with dynamically allocated memory in C.
+
+## NEXT      riprendere      QUI
+1.  scrivere cosa fa ogni funzione con le varibili che ha **ft-behaviors**
+2. 1. run code -> togliere errori stupidi -> itera finche non esce qualcosa
+2. 2. prova memory leaks
+2. 3. riscrivere se necessario tutto il progetto  **ft-behaviors** studialo ma non riscrivere usandolo senno bias
+3. peertopeer help -> find tester -> iterate until good
+4. push -> restudy the project
