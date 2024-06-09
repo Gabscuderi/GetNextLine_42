@@ -119,18 +119,36 @@ char *get_next_line(int fd)
   basin_buffer = ft_manage_remaining(base_buffer)
   return (one_line);
 }
-
+```
+***two new ft to manage the buffer***
+```
 char *ft_create_line(char *base_buffer) {
-  //copia base in str compreso il \n mettondo un \0, e non il resto
-  //ritorna come one_line nel get_next_line
+  	char	*line;
+
+	while (base_buffer)
+	{
+		*line = *base_buffer;
+		if ((*line) == '\n')
+			break;
+		line++;
+		base_buffer++;
+	}
+	*ptr_counter += 1;
+	return (line);
 }
 
 char *ft_manage_remaining(char *base_buffer) {
-  //toglie dal buffer il pre \n e ci lascia cio che rimane, 
-  //ritorna come nuova base da riempire in get
+	char	*tmp;
+
+	tmp = malloc(1 * sizeof(char));
+	while (*base_buffer != '\n')
+		base_buffer++;
+	while (*base_buffer != '\0')
+		*tmp = *base_buffer;
+	return (tmp);
 }
 ```
-base_buffer si riempie, se non ci sono newline, allora richiama read_from_file e ci aggiunge roba, il main richiama get_next_line e cosi via, se nel base buffer ce il new line va avnti 
+(IT: base_buffer si riempie, se non ci sono newline, allora richiama read_from_file e ci aggiunge roba, il main richiama get_next_line e cosi via, se nel base buffer ce il new line va avanti):
 
 ***ft_read_from_file***   takes from a file, put in a mid buffer wich needs to be allocated first, and then calling ft_attach_buffer puts together base_buffer e mid buffer. 
 ("cup_buffer" -> "mid_buffer")
@@ -170,36 +188,7 @@ It needs to be rimimbered base e mid are two pointers so they don't rappresent t
 To concatenate base and mid buffer together memory space needs to be prepared considering both sets of data.
 ft_strjoin allocates memory for the new base, and it does the real job of putting them together.
 
-After the data is successfully combined in the new basin_buffer, the function 
-then reassigns the pointer basin_buffer to point to the new memory address 
+After the data is successfully combined in the new base_buffer, the function 
+then reassigns the pointer base_buffer to point to the new memory address 
 containing the merged data. 
 
-This is the smart reassignment that allows the 
-function to update the original basin_buffer outside of the function.
-
-By reassigning basin_buffer, the function effectively updates the original 
-pointer outside the function's scope. 
-
-Now, the original basin_buffer points 
-to the newly created buffer that holds the merged data from both buffers 
-(basin_buffer and read_buffer).
-
-This smart reassignment ensures that the caller of the append_buffer 
-function receives the updated pointer, pointing to the combined data, 
-and any further operations or usage of basin_buffer outside the function 
-will reflect the changes made within the function.
-
-In conclusion, the append_buffer function demonstrates the concept of 
-passing pointers to modify the original pointer's value, allowing for 
-efficient data concatenation without causing memory leaks or loss of data. 
-
-This smart memory management and pointer reassignment make the function 
-reliable and safe when dealing with dynamically allocated memory in C.
-
-## NEXT      riprendere      QUI
-1.  scrivere cosa fa ogni funzione con le varibili che ha **ft-behaviors**
-2. 1. run code -> togliere errori stupidi -> itera finche non esce qualcosa
-2. 2. prova memory leaks
-2. 3. riscrivere se necessario tutto il progetto  **ft-behaviors** studialo ma non riscrivere usandolo senno bias
-3. peertopeer help -> find tester -> iterate until good
-4. push -> restudy the project

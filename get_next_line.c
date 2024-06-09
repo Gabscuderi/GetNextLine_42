@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/23 20:08:39 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/09 17:56:07 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 char	*ft_read_from_file(char *base_buffer, int fd);
 char	*ft_create_line(char *base_buffer, int *ptr_counter);
-char	*ft_manage_remaining(char *base_buffer, int counter);
+char	*ft_manage_remaining(char *base_buffer);
 char	*ft_attach_buffer(char *base_buffer, char *mid_buffer);
 
 char	*get_next_line(int fd)
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 	if(!base_buffer)
 		return (free(base_buffer), NULL);
 	one_line = ft_create_line(base_buffer, &counter_line);
-	base_buffer = ft_manage_remaining(base_buffer, counter_line); 
+	base_buffer = ft_manage_remaining(base_buffer); 
 	return (one_line);
 }
 
@@ -76,28 +76,29 @@ char *ft_read_from_file(char *base_buffer, int fd)
 char 	*ft_create_line(char *base_buffer, int *ptr_counter) //torna one_line
 {
 	char	*line;
-	int		i;
 
-	i = *ptr_counter;
-	while (1)
+	while (base_buffer)
 	{
-		line[i] = base_buffer[i];
-		i++;
-		if (base_buffer[i - 1] = ('\n'))
+		*line = *base_buffer;
+		if ((*line) == '\n')
 			break;
+		line++;
+		base_buffer++;
 	}
+	*ptr_counter += 1;
 	return (line);
 }
 
 //counter is i of create line so it's the char after \n
-char    *ft_manage_remaining(char *base_buffer, int counter)
+char    *ft_manage_remaining(char *base_buffer)
 {
 	char	*tmp;
-	int		i;
 
-	i = 0;
-	while (base_buffer[counter] != '\0')
-		tmp[i++] = base_buffer[counter++];
+	tmp = malloc(1 * sizeof(char));
+	while (*base_buffer != '\n')
+		base_buffer++;
+	while (*base_buffer != '\0')
+		*tmp = *base_buffer;
 	return (tmp);
 }
 
