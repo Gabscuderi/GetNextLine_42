@@ -93,7 +93,7 @@ in getnextline.h because it is a macro.
 (macros are static variables so they are allocated in the data segment (they are "permently" memorized in the pc) not like the stack segment for local viarables)
 
 
-### A better understanding of the gnl project.
+# A better understanding of the gnl project.
 
 - we don't know the size of the file 
 - a code wich is able to handle any number of lines in the file
@@ -191,4 +191,65 @@ ft_strjoin allocates memory for the new base, and it does the real job of puttin
 After the data is successfully combined in the new base_buffer, the function 
 then reassigns the pointer base_buffer to point to the new memory address 
 containing the merged data. 
+
+## modifying
+So it compils and nothing comes out, first thing I do is shrink the code so it's easier to adjest, now that we now how it must work, we can do this step.
+
+
+I see I have created ft_attach to append a src in dst, and that's smt we have been doing inlibft, so I will replace
+
+ft_attach_buffer , ft_strjoin , ft_strdup , ft_strlen , ft_strlcpy , all with:
+
+ft_strcat and ft_strlen.
+
+#error in ft_create_line e manage_remaining:
+in create line we used directly the memory written in base: 
+
+*base_buffer
+
+base_buffer++
+
+so we did not need manage remaining, because our base_buffer was already pointing at the position after the new line character
+
+the error is also the fact that I did the same for the line wich would be return, and that's a problem because I wanna have the line pointer to the begging of the line string and not at the end 
+
+```
+while (base_buffer)
+	{
+		line[i] = *base_buffer;
+		if (line[i] == '\n')
+
+			break;
+		i++;
+		base_buffer++;
+	}
+```
+
+So with this I can also another function.
+serve prima del break base++, ed inoltre devo devo mettere un null a fine line.
+I can join the while and the if cicle
+I did this way:
+```
+char 	*ft_create_line(char *base_buffer) //torna one_line
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (line[i - 1] == '\n' || base_buffer)
+	{
+		line[i] = *base_buffer;
+		i++;
+		base_buffer++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+```
+then one more thing would also be going to change ft_calloc removing ft_bzero, and then we can also swap som malloc in the gnl.c with ft_calloc.
+
+ft_bzero is done inside of calloc.
+
+Using the limits.h we can use the value of UINT_MAX, as limits of allocations;
+using malloc of the total (elements and size of elements).
 
