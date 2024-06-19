@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/19 21:27:37 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:08:31 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ char	*get_next_line(int fd)
 	if (!ft_strchr(base_buffer, '\n'))
 		base_buffer = ft_read_from_file(base_buffer, fd);
 	if(!base_buffer)
-		return (free(base_buffer), NULL);
+	{
+		free(base_buffer);
+		return (NULL);
+	}
 	one_line = ft_create_line(base_buffer);
 	return (one_line);
 }
@@ -53,8 +56,10 @@ char *ft_read_from_file(char *base_buffer, int fd)
 	{
 		bytes_read = read(fd, mid_buffer,   BUFFER_SIZE);
 		if (bytes_read < 0)
+		{
 			free(mid_buffer);
 			return (NULL);
+		}
 		mid_buffer[BUFFER_SIZE + 1] = '\0';
 		ft_strcat(base_buffer, mid_buffer);
 		if (ft_strchr(base_buffer, '\n') != NULL )
@@ -69,6 +74,9 @@ char 	*ft_create_line(char *base_buffer) //torna one_line
 	int		i;
 
 	i = 0;
+	line = malloc((ft_strlen(base_buffer) + 1) * sizeof(char *));
+	if (!line)
+		return NULL;
 	while (line[i - 1] == '\n' || base_buffer)
 	{
 		line[i] = *base_buffer;

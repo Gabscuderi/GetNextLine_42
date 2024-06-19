@@ -6,12 +6,11 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:49:29 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/05/20 23:21:09 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:13:37 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <fcntl.h>
 #include "get_next_line.h"
 

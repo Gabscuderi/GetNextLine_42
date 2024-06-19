@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:30:12 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/19 21:27:33 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:08:14 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@
 # include <limits.h>
 
 char	*get_next_line(int fd);
-
 char    *ft_read_from_file(char *base_buffer, int fd);
 char    *ft_create_line(char *base_buffer);
-char    *ft_manage_remaining(char *base_buffer);
 
 size_t	ft_strlen(const char *str);
 void	*ft_calloc(size_t n_elem, size_t el_size);
 char	*ft_strchr(const char *s, int c);
+void	ft_strcat(char *dest, char *src);
 
 int main(void);
 
