@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:42:23 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/23 16:14:10 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/23 19:04:56 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t n_elem, size_t el_size)
 
 	i = 0;
 	tot = n_elem * el_size;
-	if (n_elem && el_size && (n_elem * el_size) > UINT_MAX)
+	if (n_elem && el_size && el_size > (UINT_MAX / n_elem))
 		return (NULL);
 	ptr = malloc(tot);
 	while (i < tot)
@@ -28,31 +28,27 @@ void	*ft_calloc(size_t n_elem, size_t el_size)
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *str)
+int		ft_strlen(const char *str)
 {
 	int	i;
 	
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int		i;
-	char	cc;
-
-	cc = (char) c;
+	
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
+		if (s[i] == c)
+			return (&s[i]);
 		i++;
 	}
-	if (s[i] == cc)
-		return ((char *) &s[i]);
 	return (NULL);
 }
 

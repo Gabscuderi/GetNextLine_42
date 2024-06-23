@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:49:29 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/19 20:13:37 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:42:09 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int main(void)
 		free(line);
 		line = NULL;
 	}
-
 	close(fd);
 	return (0);
 }

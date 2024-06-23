@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:30:12 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/23 16:08:36 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/23 19:05:50 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 char	*get_next_line(int fd);
 char	*ft_line_expand(char *base_buffer);
-void    ft_create_line(char *base_buffer, char *mid_buffer);
+void	ft_create_line(char *base_buffer, char *mid_buffer);
 
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 void	*ft_calloc(size_t n_elem, size_t el_size);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(char *s, int c);
 void	ft_strcat(char *dest, char *src);
 
 int main(void);
