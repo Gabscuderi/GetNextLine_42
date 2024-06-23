@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:42:23 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/19 21:27:35 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/23 16:14:10 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	*ft_strchr(const char *s, int c)
 	{
 		dest[i + j] = src[j];
 		src[j] = '\0';
-		i++;
 		j++;
 	}
 	dest[i + j] = '\0';

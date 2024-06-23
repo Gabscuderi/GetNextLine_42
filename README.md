@@ -253,3 +253,84 @@ ft_bzero is done inside of calloc.
 Using the limits.h we can use the value of UINT_MAX, as limits of allocations;
 using malloc of the total (elements and size of elements).
 
+### now is time for the principal function
+
+let's put together get_next_line and ft_read_from_file; let's first look at what I need to do:
+
+- I need a mid_buffer to be passed to read with the fd and BUFFER_SIZE;
+- I need a base_buffer,wich could be used also as the line (and if it is the line, base can't be the one to be static,
+other wise each time i will check the \n I could find it there.)
+- the one that must be static in this case is the mid_buffer, because I will 
+- each time I will expand base with sizeof base + BASE_BUFFER before to append mid to base, and so the size of base can host base + mid.
+(may be for this i need anyways another function function)
+(may be base can be static or also not)
+
+- untill a new line in base (==while strchar (base, \n)), I will:
+1. read(fd, mid)
+- i will read from mid only if ther is nothing where mid points (if 
+!*mid)
+2. base = sizeof base + BUFFER
+3. base = base + mid (here we can use the create_line function, with some modification)
+4. if everything good return base, otherwise free base and return null
+
+now we have the algorithm let's write it:
+```
+//add checks and and everything else later
+get_next_line(int fd)
+{
+	static char		mid_buffer[BUFFER_SIZE + 1]
+
+	while (!ft_strchr(base; \n))
+		if (!*mid_buffer)
+			read(fd, mid, BUDFFER);
+		//check
+		base = ft_line_expand(base);
+		ft_create_line(base, mid);
+	if (base && *base)
+		return (base);
+	return (free(base), NULL);
+}
+```
+
+```
+//base_buffer goes in 
+//mem. of base will be expand when
+//we allocate new mem. for line.
+//the ft returns line and frees the base
+//line returns in get_next_line as the new base.
+char ft_line_expand(base_buffer) 
+{
+	char *line;
+
+	line = ft_calloc((ft_strlen(base_buffer) + BUFFER_SIZE + 1), sizeof(char));
+	if(!line)
+		return ?.;
+	if (base_buffer)//if its not end of fd
+		ft_strcat(line, base_buffer);
+	return (free(base_nuffer), line);
+} 
+```
+```
+//for ft_create_line we can mixe it wiht ft_strcat
+//mid will be append to base, but here if the \n will be append 
+// we break it, and as in ft_strcat what's each time we put a null 
+//in the mid memory we just copied, so at the end mid will only 
+//have what's next the \n
+//used strcat to re-align at the beginning mid
+void	ft_create_line(char *base, char* mid)
+{
+	int	j;
+	int	i;
+
+	j = 0;
+	i = ft_strlen(base);
+	while (mid[j] || base[i + j -1] == '\n')
+	{
+		base[i + j] = mid[j];
+		mid[j] = '\0';
+		j++;
+	}
+	if (mid[j])
+		ft_strcat(mid, mid + j);
+}
+```
