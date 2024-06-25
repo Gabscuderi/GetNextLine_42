@@ -1,7 +1,7 @@
 testo di prova
 deve leggere le linee
-possiamo fare delle prov3
+possiamo fare delle prove
 
 lasciando dei new line sparsi
 ma perde qualche lettera,
-è solo da migliorare
+è solo da migliorare.

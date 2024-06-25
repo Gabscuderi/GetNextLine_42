@@ -6,7 +6,7 @@
 /*   By: gscuderi <gscuderi@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 00:28:27 by gscuderi          #+#    #+#             */
-/*   Updated: 2024/06/23 19:02:28 by gscuderi         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:01:52 by gscuderi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_create_line(char *base_buffer, char *mid_buffer) //torna one_line
 
 	j = 0;
 	i = ft_strlen(base_buffer);
-	while (mid_buffer[j] || base_buffer[i + j -1] == '\n')
+	while (mid_buffer[j] && base_buffer[i + j -1] != '\n')
 	{
 		base_buffer[i + j] = mid_buffer[j];
 		mid_buffer[j] = '\0';
