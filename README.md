@@ -15,7 +15,9 @@ bytes_read = read(fd, cup_buffer, 3);
 
 return (cup_buffer);
 ```
-**main**
+
+```
+MAIN.C
 
 fd = open("testo_prova.txt", O_RDONLY);
 
@@ -25,14 +27,15 @@ fd = open("testo_prova.txt", O_RDONLY);
 
 next_line = ft_get_next_line(fd);
 
-**if (next_line == NULL)**
-  **break ;**
+if (next_line == NULL)
+  break;
 
 printf("[%d]:%s\n", count, next_line); //count so we see the number of the line
 
 }
 
 close(fd);
+```
 
 ### now.
 accumulating content until there is a new line
